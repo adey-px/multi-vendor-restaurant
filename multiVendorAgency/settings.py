@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -75,12 +76,16 @@ WSGI_APPLICATION = 'multiVendorAgency.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+        'HOST': config('HOST'),
         'NAME': config('NAME'),
         'USER': config('USER'),
         'PASSWORD': config('PASSWORD'),
-        'HOST': config('HOST'),
     }
 }
+
+
+# Indicate using custom user model class
+AUTH_USER_MODEL = 'acount.User'
 
 
 # Password validation
