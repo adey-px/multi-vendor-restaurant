@@ -5,7 +5,7 @@ from django.contrib.auth.models import (
 )
 
 
-# Create new user & superuser
+# Create user & superuser
 class UserManager(BaseUserManager):
     # user
     def create_user(
@@ -33,9 +33,14 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    # superuser from user inst above
+    # superuser from user above
     def create_superuser(
-        self, first_name, last_name, username, email, password=None
+        self,
+        first_name,
+        last_name,
+        username,
+        email,
+        password=None,
     ):
         user = self.create_user(
             first_name=first_name,
@@ -53,7 +58,7 @@ class UserManager(BaseUserManager):
         return user
 
 
-# Custom user model class for db
+# Custom User model for db
 class User(AbstractBaseUser):
     RESTAURANT = 1
     CUSTOMER = 2
@@ -97,3 +102,55 @@ class User(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
+
+
+# ---------------------------------------------------------------#
+
+""" user profile model from User model
+ user here is same user instance above 
+ Note: must still configure django signal
+ to enable auto-creation of profile as
+  each user is created """
+#
+class UserProfile(models.Model):
+
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, blank=True, null=True
+    )
+    profile_image = models.ImageField(
+        upload_to="users/profile_images", blank=True, null=True
+    )
+    cover_image = models.ImageField(
+        upload_to="users/cover_images", blank=True, null=True
+    )
+
+    address_line_1 = models.CharField(
+        max_length=50, blank=True, null=True
+    )
+    address_line_2 = models.CharField(
+        max_length=50, blank=True, null=True
+    )
+    country = models.CharField(
+        max_length=15, blank=True, null=True
+    )
+    state = models.CharField(
+        max_length=150, blank=True, null=True
+    )
+    city = models.CharField(
+        max_length=150, blank=True, null=True
+    )
+    pin_code = models.CharField(
+        max_length=150, blank=True, null=True
+    )
+    latitude = models.CharField(
+        max_length=150, blank=True, null=True
+    )
+    longitude = models.CharField(
+        max_length=150, blank=True, null=True
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now_add=True)
+
+    # identify user profile by email
+    def __str__(self):
+        return self.user.email
