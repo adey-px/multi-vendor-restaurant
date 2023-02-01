@@ -85,7 +85,7 @@ DATABASES = {
 
 
 # Indicate using custom user model class
-AUTH_USER_MODEL = 'acount.User'
+AUTH_USER_MODEL = 'account.User'
 
 
 # Password validation
