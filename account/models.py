@@ -1,3 +1,4 @@
+""" Custom user model for database """
 from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager,
@@ -104,14 +105,14 @@ class User(AbstractBaseUser):
         return True
 
 
-# ---------------------------------------------------------------#
+# ----------------------- User profile -------------------------- #
 
 """ user profile model from User model
- user here is same user instance above 
- Note: must still configure django signal
- to enable auto-creation of profile as
-  each user is created """
-#
+    user here is same user instance above 
+    Note: must still configure django signal
+    to enable auto-creation of profile as
+    each user is created """
+
 class UserProfile(models.Model):
 
     user = models.OneToOneField(
@@ -154,3 +155,4 @@ class UserProfile(models.Model):
     # identify user profile by email
     def __str__(self):
         return self.user.email
+
