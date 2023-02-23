@@ -1,7 +1,7 @@
-from django.shortcuts import redirect, render, HttpResponse
-
+from django.shortcuts import redirect, render
 from .models import User
 from .forms import registerForm
+from django.contrib import messages
 
 
 # Register
@@ -38,9 +38,26 @@ def registerUser(request):
             )
             user.role = User.CUSTOMER
             user.save()
+            messages.success(
+                request, "Success! Your account is registered"
+            )
             return redirect("registerUser")
+
+        # handle any field errors
+        else:
+            print(form.errors)
     else:
         form = registerForm()
     context = {"form": form}
 
     return render(request, "account/registerUser.html", context)
+
+
+"""
+Able to access and use messages object here
+in all templates due to the below in settings.py
+'django.contrib.messages.context_processors.messages'
+
+whatever is returned through context_processors is 
+accessible in all template files
+"""
