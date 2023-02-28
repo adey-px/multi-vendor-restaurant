@@ -38,5 +38,5 @@ class registerForm(forms.ModelForm):
 
         if password != conf_password:
             raise forms.ValidationError(
-                'Oops! password does not match'
+                'Passwords do not match'
             )
