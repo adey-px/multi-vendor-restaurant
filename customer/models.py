@@ -1,4 +1,9 @@
-""" Custom user model for database """
+""" 
+Custom User model & User profile
+for database. This is set to use
+in settings.py to replace django
+built-in User model.
+"""
 from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager,
@@ -61,12 +66,12 @@ class UserManager(BaseUserManager):
 
 # Custom User model for db
 class User(AbstractBaseUser):
-    RESTAURANT = 1
-    CUSTOMER = 2
+    CUSTOMER = 1
+    VENDOR = 2
 
     roleChoices = {
-        (RESTAURANT, "Restaurant"),
         (CUSTOMER, "Customer"),
+        (VENDOR, "Vendor"),
     }
 
     # table fields for user in db
@@ -107,11 +112,12 @@ class User(AbstractBaseUser):
 
 # ----------------------- User profile -------------------------- #
 
-""" user profile model from User model
-    user here is same user instance above 
-    Note: must still configure django signal
-    to enable auto-creation of profile as
-    each user is created """
+""" 
+User profile model linked to custom User model.
+user here is same user instance above.
+Need to configure django signal to enable 
+auto-creation of profile as each user is created.
+"""
 
 class UserProfile(models.Model):
 

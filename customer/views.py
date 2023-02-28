@@ -7,10 +7,10 @@ from django.contrib import messages
 # Register
 def registerUser(request):
     """
-    New user registration. 'form' from here
-    is used in registerUser template. When
-    form is valid and saved, it triggers
-    singals and print at terminal.
+    New user registration. 'form' from here is 
+    used in registerUser template. When form is 
+    valid and saved, it triggers singals and 
+    print at terminal.
     """
     if request.method == "POST":
         form = registerForm(request.POST)
@@ -50,7 +50,7 @@ def registerUser(request):
         form = registerForm()
     context = {"form": form}
 
-    return render(request, "account/registerUser.html", context)
+    return render(request, "customer/registerUser.html", context)
 
 
 """

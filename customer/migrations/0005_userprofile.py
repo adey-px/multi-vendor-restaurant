@@ -8,7 +8,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('account', '0004_alter_user_role'),
+        ('customer', '0004_alter_user_role'),
     ]
 
     operations = [

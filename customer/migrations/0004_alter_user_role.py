@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('account', '0003_auto_20230131_1714'),
+        ('customer', '0003_auto_20230131_1714'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='user',
             name='role',
-            field=models.PositiveIntegerField(blank=True, choices=[(2, 'Customer'), (1, 'Restaurant')], null=True),
+            field=models.PositiveIntegerField(blank=True, choices=[(2, 'Vendor'), (1, 'Customer')], null=True),
         ),
     ]

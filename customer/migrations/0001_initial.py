@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('username', models.CharField(max_length=50, unique=True)),
                 ('email', models.EmailField(max_length=100, unique=True)),
                 ('phone', models.CharField(blank=True, max_length=12)),
-                ('role', models.PositiveIntegerField(blank=True, choices=[(2, 'Customer'), (1, 'Restaurant')], null=True)),
+                ('role', models.PositiveIntegerField(blank=True, choices=[(1, 'Customer'), (2, 'Vendor')], null=True)),
                 ('date_joined', models.DateTimeField(auto_now_add=True)),
                 ('last_login', models.DateTimeField(auto_now_add=True)),
                 ('created_date', models.DateTimeField(auto_now_add=True)),

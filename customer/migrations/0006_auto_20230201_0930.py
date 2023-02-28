@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('account', '0005_userprofile'),
+        ('customer', '0005_userprofile'),
     ]
 
     operations = [
@@ -27,6 +27,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='user',
             name='role',
-            field=models.PositiveIntegerField(blank=True, choices=[(1, 'Restaurant'), (2, 'Customer')], null=True),
+            field=models.PositiveIntegerField(blank=True, choices=[(1, 'Customer'), (2, 'Vendor')], null=True),
         ),
     ]
